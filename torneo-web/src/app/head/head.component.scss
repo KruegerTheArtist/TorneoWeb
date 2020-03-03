@@ -1,0 +1,105 @@
+.toolbar {
+    height: 60px;
+    margin: -8px;
+    display: flex;
+    align-items: center;
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+  }
+
+  .toolbar img {
+    margin: 0 16px;
+  }
+
+  .toolbar #twitter-logo {
+    height: 40px;
+    margin: 0 16px;
+  }
+
+  .toolbar #twitter-logo:hover {
+    opacity: 0.8;
+  }
+
+  .crop {
+    background: #D6D6D6;
+
+    //background: linear-gradient(to right, #D6D6D6, rgb(255, 255, 255));
+  }
+
+  .crop .a{
+    position:absolute;
+    top:-66px;
+    left:50px;
+    clip:rect(122px 800px 420px 20px);
+    }
+
+    .crop .b{
+      position:absolute;
+      top:-66px;
+      left:50px;
+      clip:rect(22px 800px 900px 0px);
+      }
+
+      .btn {
+        position: relative;
+        min-width: min-content;
+        display: block;
+        // padding: 0px 20px 0px 20px ;
+        // margin: 5px !important;
+      
+        /* overflow: hidden; */
+      
+        border-width: 0;
+        /* outline: none; */
+        border-radius: 2px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+        
+        background-color: rgba(31, 141, 104, 0.6);
+        color: black;
+        
+        transition: background-color .3s;
+      }
+      
+      .btn > * {
+        position: relative;
+      }
+      
+      .btn span {
+        display: block;
+        /* padding: 12px 24px; */
+      }
+      
+      .btn:before {
+        content: "";
+        
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        
+        display: block;
+        width: 0;
+        padding-top: 0;
+          
+        border-radius: 100%;
+        
+        background-color: rgba(236, 240, 241, .3);
+        
+        /* -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%); */
+      }
+      
+      .btn:active:before {
+        width: 120%;
+        padding-top: 120%;
+        
+        transition: width .2s ease-out, padding-top .2s ease-out;
+      }
+      
+      /* Styles, not important */
+      *, *:before, *:after {
+        box-sizing: border-box;
+      }
