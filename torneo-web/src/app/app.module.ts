@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeadComponent } from './head/head.component';
 import { BodyComponent } from './body/body.component';
+import { MaterialBlockModule } from './material-block-module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { BodyComponent } from './body/body.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MaterialBlockModule
   ],
   providers: [],
   bootstrap: [AppComponent]

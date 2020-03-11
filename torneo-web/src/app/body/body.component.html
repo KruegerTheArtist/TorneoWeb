@@ -1,2 +1,16 @@
-<p>body works!</p>
-<img class="vtec" style="height: 700px; width: 700px" src="https://ae01.alicdn.com/kf/HTB1VxYSNXXXXXb4apXXq6xXFXXXL/Red-Chrom-auto-car-Metal-font-b-VTEC-b-font-sticker-Car-Fender-Stickers-and-font.jpg">
+<div fxFlexFill fxLayout="row" *ngIf="appState.click">
+    <div class="kit" fxFlex="70%"  fxLayoutAlign="start start">
+        <div fxLayout="column" class="kit-content" >
+                <mat-checkbox [checked]="includeKit(kit)" *ngFor="let kit of kitArray" (change)="aaa(kit)">{{kit}}</mat-checkbox>
+        </div>
+
+
+    </div>
+    <div class="kit" fxFlex="30%">
+        <div style="height: 700px;width: 500px; background: green"></div>
+    </div>
+    <!-- <div style="height: 600px; width: 700px">
+        <img id="vtec1" (mousedown) = "ppp($event)" (ondragstart)="aaa()" (onmouseup)="bbb()"  style="height: 400px; width: 400px" src="https://ae01.alicdn.com/kf/HTB1VxYSNXXXXXb4apXXq6xXFXXXL/Red-Chrom-auto-car-Metal-font-b-VTEC-b-font-sticker-Car-Fender-Stickers-and-font.jpg">
+    
+    </div> -->
+</div>
