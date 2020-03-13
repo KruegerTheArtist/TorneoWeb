@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApplicationStateService } from '../shared/application-state.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-head',
@@ -8,14 +9,17 @@ import { ApplicationStateService } from '../shared/application-state.service';
 })
 export class HeadComponent implements OnInit {
   click = false;
-  constructor(private appState: ApplicationStateService) { }
+  constructor(
+    private appState: ApplicationStateService,
+    //public router: Router
+    ) { }
 
   ngOnInit() {
   }
 
   vvv() {
     this.click = !this.click;
-    this.appState.setClick(this.click);
+  //  this.appState.setClick(this.click);
   }
 
 }
