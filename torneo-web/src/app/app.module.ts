@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { NgModule } from '@angular/core';
@@ -25,7 +25,7 @@ import { AboutConfigurationComponent } from './body/about-configuration/about-co
     BrowserModule,
     AppRoutingModule,
     FlexLayoutModule,
-    MaterialBlockModule
+    MaterialBlockModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

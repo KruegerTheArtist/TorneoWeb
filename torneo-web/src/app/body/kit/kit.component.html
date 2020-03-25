@@ -1,13 +1,28 @@
 <div fxFlexFill fxLayout="row" >
-    <div class="kit" fxFlex="70%"  fxLayoutAlign="start start">
+    <div class="kit" fxFlex="15%">
+       <div style="margin-left: 15px;">
+        <img style="width: 48px; height: 48px;;" src="https://secure.webtoolhub.com/static/resources/icons/set73/b89b1aa9.png">
+       </div>
+       <div style="margin-left: 15px;">
+        <img style="width: 48px; height: 48px;;" src="https://www.autosynergy.co.uk/assets/icons/ic-transmission-444.png">
+       </div>
+       <div style="margin-left: 15px;">
+        <img style="width: 48px; height: 48px;;" src="http://www.scudierofficina.com/wp-content/uploads/2016/11/chassis-150x150.png">
+       </div>
+       <div style="margin-left: 15px;">
+        <img style="width: 48px; height: 48px;;" src="https://cdn1.savepice.ru/uploads/2020/3/25/621ab98698b546a3a1d64c03fd29496b-full.png">
+       </div>
+        
+        <!-- <div style="height: 700px;width: 500px; background: green"></div> -->
+    </div>
+    <div class="kit" fxFlex="60%"  fxLayoutAlign="start start">
         <div fxLayout="column" class="kit-content" >
                 <mat-checkbox [checked]="includeKit(kit)" *ngFor="let kit of kitArray" (change)="aaa(kit)">{{kit}}</mat-checkbox>
         </div>
 
-
     </div>
-    <div class="kit" fxFlex="30%">
-        <div style="height: 700px;width: 500px; background: green"></div>
+    <div class="kit" fxFlex="25%">
+        <!-- <div style="height: 700px;width: 500px; background: green"></div> -->
     </div>
     <!-- <div style="height: 600px; width: 700px">
         <img id="vtec1" (mousedown) = "ppp($event)" (ondragstart)="aaa()" (onmouseup)="bbb()"  style="height: 400px; width: 400px" src="https://ae01.alicdn.com/kf/HTB1VxYSNXXXXXb4apXXq6xXFXXXL/Red-Chrom-auto-car-Metal-font-b-VTEC-b-font-sticker-Car-Fender-Stickers-and-font.jpg">
