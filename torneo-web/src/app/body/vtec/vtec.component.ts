@@ -25,16 +25,16 @@ export class VtecComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.vtec = this.appState.getUserKit().includes('Vtec');
-    this.sir = this.appState.getUserKit().includes('Sir');
-    this.hatch = this.appState.getUserKit().includes('Люк');
-    this.euroR = this.appState.getUserKit().includes('Euro-R');
-    this.sirT = this.appState.getUserKit().includes('Sir-T');
-    this.f18 = this.appState.getUserKit().includes('1.8');
-    this.f20 = this.appState.getUserKit().includes('2.0');
-    this.FWD = this.appState.getUserKit().includes('4WD');
-    this.MT = this.appState.getUserKit().includes('МКПП');
-    this.AT = this.appState.getUserKit().includes('АКПП');
+    // this.vtec = this.appState.getUserKit().includes('Vtec');
+    // this.sir = this.appState.getUserKit().includes('Sir');
+    // this.hatch = this.appState.getUserKit().includes('Люк');
+    // this.euroR = this.appState.getUserKit().includes('Euro-R');
+    // this.sirT = this.appState.getUserKit().includes('Sir-T');
+    // this.f18 = this.appState.getUserKit().includes('1.8');
+    // this.f20 = this.appState.getUserKit().includes('2.0');
+    // this.FWD = this.appState.getUserKit().includes('4WD');
+    // this.MT = this.appState.getUserKit().includes('МКПП');
+    // this.AT = this.appState.getUserKit().includes('АКПП');
   }
 
 }
