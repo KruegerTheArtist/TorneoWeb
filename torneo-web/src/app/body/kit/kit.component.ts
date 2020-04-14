@@ -4,6 +4,9 @@ import { ConfigurationModel } from 'src/app/shared/models/configuration.model';
 import { EngineEnumExt } from 'src/app/shared/enums/engine.enum';
 
 import { FormBuilder } from '@angular/forms';
+import { TransmissionEnumExt } from 'src/app/shared/enums/transmission.enum';
+import { WheelDriveEnumExt } from 'src/app/shared/enums/wheel-drive.enum';
+import { ModificationEnumExt } from 'src/app/shared/enums/modification.enum';
 
 @Component({
   selector: 'app-kit',
@@ -27,6 +30,10 @@ export class KitComponent implements OnInit, OnDestroy {
   // transmission = 'Не выбран тип трансмиссии';
   kitArray = ['Люк', 'МКПП', 'АКПП', '1.8', '2.0', '4WD', 'Sir', 'Sir-T', 'Euro-R']
   engineArray = EngineEnumExt.getAllEngineNames();
+  transmissionArray = TransmissionEnumExt.getAllTransmissionNames();
+  wheelDriveArray = WheelDriveEnumExt.getAllWheelDriveNames();
+  modificationArray = ModificationEnumExt.getAllModificationNames();
+
 
   constructor(public appState: ApplicationStateService,
     public fb: FormBuilder) {
@@ -95,6 +102,12 @@ export class KitComponent implements OnInit, OnDestroy {
 
   addNewOption(kit: any) {
     console.log(kit);
+    // if(!this.appState.getUserKit().includes(kit)) {
+    //   this.appState.setUserKit(kit);
+    // } else {}
+  }
+  changeEngineOption(engine: any) {
+    e
     // if(!this.appState.getUserKit().includes(kit)) {
     //   this.appState.setUserKit(kit);
     // } else {}

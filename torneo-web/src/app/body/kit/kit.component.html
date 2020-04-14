@@ -38,12 +38,30 @@
     <div class="kit" fxFlex="60%" fxLayout="column" fxLayoutAlign="start start">
         <div fxLayout="column" class="kit-content">
             Двигатель
-            <mat-checkbox [checked]="includeKit(engine)" *ngFor="let engine of engineArray" (change)="addNewOption(engine)">{{engine}}
+            <mat-checkbox [checked]="includeKit(engine)" *ngFor="let engine of engineArray"
+                (change)="changeEngineOption(engine)" style="margin-left: 15px;">{{engine}}
             </mat-checkbox>
         </div>
-        <mat-checkbox [checked]="includeKit(kit)" *ngFor="let kit of kitArray" (change)="addNewOption(kit)">{{kit}}
-        </mat-checkbox>
-        <button (click)="applyChanges()" mat-button >Click me!</button>
+        <div fxLayout="column" class="kit-content">
+            Коробка передач
+            <mat-checkbox [checked]="includeKit(transmission)" *ngFor="let transmission of transmissionArray"
+                (change)="addNewOption(transmission)" style="margin-left: 15px;">{{transmission}}
+            </mat-checkbox>
+        </div>
+        <div fxLayout="column" class="kit-content">
+            Привод
+            <mat-checkbox [checked]="includeKit(wheelDrive)" *ngFor="let wheelDrive of wheelDriveArray"
+                (change)="addNewOption(wheelDrive)" style="margin-left: 15px;">{{wheelDrive}}
+            </mat-checkbox>
+        </div>
+        <div fxLayout="column" class="kit-content">
+            Модификация
+            <mat-checkbox [checked]="includeKit(modification)" *ngFor="let modification of modificationArray"
+                (change)="addNewOption(modification)" style="margin-left: 15px;">{{modification}}
+            </mat-checkbox>
+        </div>
+
+        <button (click)="applyChanges()" mat-button>Click me!</button>
 
     </div>
     <div class="kit" fxFlex="25%">
