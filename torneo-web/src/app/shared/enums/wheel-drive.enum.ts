@@ -18,6 +18,17 @@ export class WheelDriveEnumExt {
         }
     }
 
+    public static getWheelDriveEnum(engine: string): WheelDriveEnum {
+        switch (engine) {
+            case '4WD':
+                return WheelDriveEnum.fullWD;
+            case 'Передний привод':
+                return WheelDriveEnum.frontWD;
+            case 'Задний привод':
+                return WheelDriveEnum.rearWD;
+        }
+    }
+
     public static getAllWheelDriveNames(): string[] {
         return ['4WD', 'Передний привод', 'Задний привод']
     }

@@ -8,17 +8,34 @@ export class EngineEnumExt {
     public static getEngineName(engine: EngineEnum): string {
         switch (engine) {
             case EngineEnum.f18b:
-                return 'F18B';
+                return 'f18b';
             case EngineEnum.f20b:
-                return 'F20B';
+                return 'f20b';
             case EngineEnum.h22a:
-                return 'H22A';
+                return 'h22a';
             default:
                 return 'Неизвестно';
         }
     }
 
     public static getAllEngineNames(): string[] {
-        return ['F18B', 'F20B', 'H22A']
+        return ['f18b', 'f20b', 'h22a'];
+    }
+
+    public static getAllHpEngines(): number[] {
+        return [140, 148, 150, 180, 200, 220];
+    }
+
+    public static getHpByEngine(engine: EngineEnum): number {
+        switch (engine) {
+            case EngineEnum.f18b:
+                return 140;
+            case EngineEnum.f20b:
+                return 150;
+            case EngineEnum.h22a:
+                return 220;
+            default:
+                return 0;
+        }
     }
 }

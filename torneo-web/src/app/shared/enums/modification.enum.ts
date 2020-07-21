@@ -27,6 +27,23 @@ export class ModificationEnumExt {
         }
     }
 
+    public static getModificationEnum(engine: string): ModificationEnum {
+        switch (engine) {
+            case 'VTE':
+                return ModificationEnum.VTE;
+            case 'VTS':
+                return ModificationEnum.VTS;
+            case 'Sir':
+                return ModificationEnum.sir;
+            case 'Sir-T':
+                return ModificationEnum.sirT;
+            case 'Euro-R':
+                return ModificationEnum.euroR;
+            case 'LEV':
+                return ModificationEnum.LEV;
+        }
+    }
+
     public static getAllModificationNames(): string[] {
         return ['VTE', 'VTS', 'Sir', 'Sir-T', 'Euro-R', 'LEV']
     }

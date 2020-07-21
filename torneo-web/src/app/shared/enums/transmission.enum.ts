@@ -15,6 +15,15 @@ export class TransmissionEnumExt {
         }
     }
 
+    public static getTransmissionEnum(engine: string): TransmissionEnum {
+        switch (engine) {
+            case 'АКПП':
+                return TransmissionEnum.AT;
+            case 'МКПП':
+                return TransmissionEnum.MT;
+        }
+    }
+
     public static getAllTransmissionNames(): string[] {
         return ['АКПП', 'МКПП']
     }
