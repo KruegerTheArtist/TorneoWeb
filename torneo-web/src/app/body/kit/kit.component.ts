@@ -158,61 +158,46 @@ export class KitComponent implements OnInit, OnDestroy {
         if (isF18b && isFrontWD) {
           return false;
         } else {
-          if (this.hp.value === hp) {
-            this.clear('hp');
-          }
+          this.clearChoice('hp', hp);
           return true;
         }
-        break;
       case 148:
         if (isF20bSOHC && isAT && isFullWD) {
           return false;
         } else {
-          if (this.hp.value === hp) {
-            this.clear('hp');
-          }
+          this.clearChoice('hp', hp);
           return true;
         }
-        break;
       case 150:
         if (isFrontWD && isF20bSOHC) {
           return false;
         } else {
-          if (this.hp.value === hp) {
-            this.clear('hp');
-          }
+          this.clearChoice('hp', hp);
           return true;
         }
-        break;
       case 180:
         if (isFrontWD && isF20bDOHC && isAT) {
           return false;
         } else {
-          if (this.hp.value === hp) {
-            this.clear('hp');
-          }
+          this.clearChoice('hp', hp);
           return true;
         }
-        break;
       case 200:
         if (isFrontWD && ((isF20bDOHC && isMT)) || (isH23a && isAT)) {
           return false;
         } else {
-          if (this.hp.value === hp)
-            this.clear('hp');
+          this.clearChoice('hp', hp);
           return true;
         }
-        break;
       case 220:
         if (isFrontWD && isH22a && isMT) {
           return false;
         } else {
           if (this.hp.value === hp) {
-            this.clear('hp');
+            this.clearChoice('hp', hp);
           }
           return true;
         }
-        break;
       default:
         break;
     }
@@ -235,22 +220,16 @@ export class KitComponent implements OnInit, OnDestroy {
         if (!isFullWD && (isH22a || isF18b || isF20bSOHC)) {
           return false;
         } else {
-          if (this.transmission.value === transmission) {
-            this.clear('transmission');
-          }
+          this.clearChoice('transmission', transmission);
           return true;
         }
-        break;
       case TransmissionEnumExt.getTransmissionName(TransmissionEnum.AT):
         if (!isH22a) {
           return false;
         } else {
-          if (this.transmission.value === transmission) {
-            this.clear('transmission');
-          }
+          this.clearChoice('transmission', transmission);
           return true;
         }
-        break;
     }
   }
 
@@ -266,49 +245,59 @@ export class KitComponent implements OnInit, OnDestroy {
     } else if (WheelDriveEnumExt.getWheelDriveEnum(wheelDrive) === WheelDriveEnum.frontWD) {
       return this.hp.value === 148;
     }
-
-    // if (WheelDriveEnumExt.getWheelDriveEnum(wheelDrive) === WheelDriveEnum.fullWD) {
-    //   return this.model.controls.hp.value === 148;
-    // }
   }
 
-  // checkWheelDrive(wheelDrive: string) {
-  //   if (WheelDriveEnumExt.getWheelDriveEnum(wheelDrive) === WheelDriveEnum.fullWD) {
-  //     return this.model.controls.hp.value === 148;
-  //   }
-  // }
 
   checkModification(modification: string) {
-    if (ModificationEnumExt.getModificationEnum(modification) === ModificationEnum.VTE) {
-      return this.model.controls.engine.value === EngineEnumExt.getEngineName(EngineEnum.f18b)
-        && this.model.controls.hp.value === 140
-        && this.model.controls.wheelDrive.value === WheelDriveEnumExt.getWheelDriveName(WheelDriveEnum.frontWD);
-    }
-    if (ModificationEnumExt.getModificationEnum(modification) === ModificationEnum.VTS) {
-      return this.model.controls.engine.value === EngineEnumExt.getEngineName(EngineEnum.f20bSOHC)
-        && this.model.controls.hp.value !== 140
-        && this.model.controls.hp.value !== 180
-        && this.model.controls.hp.value !== 200
-        && this.model.controls.hp.value !== 220;
-    }
-    if (ModificationEnumExt.getModificationEnum(modification) === ModificationEnum.euroR) {
-      return this.model.controls.engine.value === EngineEnumExt.getEngineName(EngineEnum.h22a)
-        && this.model.controls.hp.value === 220;
-    }
-    if (ModificationEnumExt.getModificationEnum(modification) === ModificationEnum.sir) {
-      return this.model.controls.hp.value === 180
-        && this.model.controls.transmission.value === 'АКПП';
-    }
-    if (ModificationEnumExt.getModificationEnum(modification) === ModificationEnum.sirT) {
-      return this.model.controls.hp.value === 200
-        && this.model.controls.transmission.value === 'МКПП';
-    }
-    return false;
-  }
+    if (this.customKit.value)
+      return false;
+
+    let isF18b = EngineEnumExt.getEngineName(EngineEnum.f18b) === this.engine.value;
+    let isF20bSOHC = EngineEnumExt.getEngineName(EngineEnum.f20bSOHC) === this.engine.value;
+    let isF20bDOHC = EngineEnumExt.getEngineName(EngineEnum.f20bDOHC) === this.engine.value;
+    let isH22a = EngineEnumExt.getEngineName(EngineEnum.h22a) === this.engine.value;
+    let isAT = TransmissionEnumExt.getTransmissionName(TransmissionEnum.AT) === this.transmission.value;
+    let isMT = TransmissionEnumExt.getTransmissionName(TransmissionEnum.MT) === this.transmission.value;
+    let isFullWD = WheelDriveEnumExt.getWheelDriveName(WheelDriveEnum.fullWD) === this.wheelDrive.value;
 
 
-  includeKit(kit: string) {
-    // return this.appState.getUserKit().includes(kit);
+    switch (modification) {
+      case ModificationEnumExt.getModificationName(ModificationEnum.VTE):
+        if (!isFullWD && (isF18b || isF20bSOHC)) {
+          return false;
+        } else {
+          this.clearChoice('modification', modification);
+          return true;
+        }
+      case ModificationEnumExt.getModificationName(ModificationEnum.VTS):
+        if (isF18b || isF20bSOHC) {
+          return false;
+        } else {
+          this.clearChoice('modification', modification);
+          return true;
+        }
+      case ModificationEnumExt.getModificationName(ModificationEnum.sir):
+        if (isF20bDOHC && isAT && !isFullWD && this.hp.value === 180) {
+          return false;
+        } else {
+          this.clearChoice('modification', modification);
+          return true;
+        }
+      case ModificationEnumExt.getModificationName(ModificationEnum.sirT):
+        if (isF20bDOHC && isMT && !isFullWD && this.hp.value === 200) {
+          return false;
+        } else {
+          this.clearChoice('modification', modification);
+          return true;
+        }
+      case ModificationEnumExt.getModificationName(ModificationEnum.euroR):
+        if (isH22a && isMT && !isFullWD && this.hp.value === 220) {
+          return false;
+        } else {
+          this.clearChoice('modification', modification);
+          return true;
+        }
+    }
   }
 
   applyChanges() {
@@ -319,8 +308,11 @@ export class KitComponent implements OnInit, OnDestroy {
     this.appState.setUserKit(this.model.value);
   }
 
-  private clear(controlName: string) {
-    this.model.controls[controlName].setValue(undefined);
+  private clearChoice(controlName: string, controlValue: any) {
+    if (this.model.controls[controlName].value === controlValue) {
+      this.model.controls[controlName].setValue(undefined);
+
+    }
   }
 
 }

@@ -80,7 +80,7 @@
             <mat-radio-group fxLayout="column" class="kit-content" formControlName="modification">
                 <span class="kit-content-title">Модификация</span>
                 <mat-radio-button *ngFor="let modification of modificationArray" style="margin: 5px 0 0 15px;"
-                    [value]="modification" [disabled]="!checkModification(modification)">
+                    [value]="modification" [disabled]="checkModification(modification)">
                     {{modification}}
                 </mat-radio-button>
             </mat-radio-group>
@@ -94,7 +94,7 @@
             mat-button>Click me!</button>
 
     </div>
-    <div class="kit" [style.background-color]="model.controls.hp.value === 180 ? 'red' : 'black'" fxFlex
+    <div class="kit" fxFlex
         fxLayoutAlign="end end">
         <img *ngIf="model.controls.engine.value === 'f18b'" style="width: 190px; height: 160px;"
             src="https://cdn1.worldpng.ru/uploads/2021/3/30/c52366bcce67277c95fb02cc5f944530-full.png">
