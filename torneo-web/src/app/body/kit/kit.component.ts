@@ -120,6 +120,7 @@ export class KitComponent implements OnInit, OnDestroy {
     this.hp.setValue(userKit.hp);
     this.engine.setValue(userKit.engine);
     this.wheelDrive.setValue(userKit.wheelDrive);
+    this.customKit.setValue(userKit.customKit);
     this.modificationPng = ModificationEnumExt.getModificationEnum(userKit.modification);
     console.log(this.appState.getUserKit());
   }

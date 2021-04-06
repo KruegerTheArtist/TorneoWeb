@@ -4,4 +4,5 @@ export class ConfigurationModel {
     transmission: string;
     wheelDrive: string;
     modification: string;
+    customKit: boolean;
 }
