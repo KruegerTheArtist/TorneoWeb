@@ -1,0 +1,53 @@
+#vtec {
+    // position:absolute;
+    // top:250px;
+    // left:350px;
+    // clip:rect(202px 800px 1020px 20px);
+}
+
+.kit{
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+    border-radius: 8px;
+    margin-left: 5px;
+}
+
+.kit-content{
+    font-style: italic;
+    margin: 10px 0 10px 15px;
+}
+
+.kit-content-title{
+    font-weight: 700;
+}
+
+.configuration-form div {
+    margin-left: 15px; 
+    margin-top: 15px;
+}
+
+.configuration-form mat-form-field {
+    width: 1em;
+    margin-left: 10px; 
+    margin-right: 15px;
+}
+
+.configuration-form img {
+    width: 36px; 
+    height: 36px;
+}
+
+.h-button {
+    position: relative;
+    min-width: min-content;
+    border-width: 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+    
+    background-color: rgba(31, 141, 104, 0.6);
+    color: black;
+    }
+    
+  .h-button:hover {
+    background-color: rgba(31, 141, 95, 0.904) !important;
+    cursor: pointer;
+    }

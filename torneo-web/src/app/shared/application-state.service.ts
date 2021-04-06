@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
+import { ConfigurationModel } from './models/configuration.model';
 
 @Injectable({ providedIn: 'root' })
 export class ApplicationStateService {
     click: boolean;
-    userKit = [];
+    userKit: ConfigurationModel = new ConfigurationModel();
     setClick(click: boolean) {
         this.click = click;
     }
-    setUserKit(kit: string) {
-        if (!this.userKit.includes(kit)) {
-            this.userKit.push(kit)
-        }
+
+    setUserKit(userKit: ConfigurationModel) {
+        this.userKit = userKit;
     }
 
     getUserKit() {

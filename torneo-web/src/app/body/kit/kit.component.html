@@ -1,0 +1,100 @@
+<div fxFlexFill fxLayout="row">
+    <div class="kit" fxFlex="200px">
+        <form [formGroup]="model" class="configuration-form">
+            <div>
+                <img src="https://secure.webtoolhub.com/static/resources/icons/set73/b89b1aa9.png">
+                <mat-form-field fxFlex="row">
+                    <mat-label>HP/kW</mat-label>
+                    <input matInput formControlName="hp" placeholder="HP/kW">
+                </mat-form-field>
+            </div>
+            <div>
+                <img src="https://www.autosynergy.co.uk/assets/icons/ic-transmission-444.png">
+                <mat-form-field fxFlex="row">
+                    <mat-label>Transmission</mat-label>
+                    <input matInput formControlName="transmission" placeholder="Transmission">
+                </mat-form-field>
+            </div>
+            <div>
+                <img src="http://www.scudierofficina.com/wp-content/uploads/2016/11/chassis-150x150.png">
+                <mat-form-field fxFlex="row">
+                    <mat-label>Wheel drive</mat-label>
+                    <input matInput formControlName="wheelDrive" placeholder="Wheel drive">
+                </mat-form-field>
+            </div>
+            <div>
+                <img *ngIf="modificationPng === ModificationEnum.VTE || modificationPng === ModificationEnum.VTS" src="https://pubimg.4mycar.ru/images/06c36eb19d0ad0a27d4a8a0dcf3139b498.jpeg" style="width: 80px;">
+                <img *ngIf="modificationPng === ModificationEnum.sir" src="https://media.vinylfarm.com/2015/06/SiR.png" style="width: 80px;">
+                <img *ngIf="modificationPng === ModificationEnum.sirT" src="https://a.d-cd.net/53d06b5s-1920.jpg" style="width: 80px;">
+                <img *ngIf="modificationPng === ModificationEnum.euroR" src="https://a.d-cd.net/dc2c07es-480.jpg" style="width: 80px;">
+                <img *ngIf="modificationPng === ModificationEnum.LEV" src="https://pubimg.4mycar.ru/images/06c36eb19d0ad0a27d4a8a0dcf3139b498.jpeg" style="width: 80px;">
+            </div>
+        </form>
+
+        <!-- <div style="height: 700px;width: 500px; background: green"></div> -->
+    </div>
+    <div [formGroup]="model" class="kit" fxFlex="400px" fxLayout="column" fxLayoutAlign="start start">
+
+        <div fxLayout="row">
+            <mat-radio-group fxLayout="column"  class="kit-content"
+                formControlName="engine">
+                <span class="kit-content-title">Двигатель</span>
+                <mat-radio-button *ngFor="let engine of engineArray"
+                    style="margin: 5px 0 0 15px;" [value]="engine">
+                    {{engine}}
+                </mat-radio-button>
+            </mat-radio-group>
+
+            <mat-radio-group fxLayout="column"  class="kit-content"
+                formControlName="hp" style="margin-left: 50px;">
+                <span class="kit-content-title">Мощность</span>
+                <mat-radio-button *ngFor="let hp of hpArray" style="margin: 5px 0 0 15px;"
+                    [value]="hp">
+                    {{hp}}
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <div fxLayout="row">
+            <mat-radio-group fxLayout="column" class="kit-content"
+                formControlName="transmission">
+                <span class="kit-content-title">Коробка передач</span>
+                <mat-radio-button *ngFor="let transmission of transmissionArray"
+                    style="margin: 5px 0 0 15px;" [value]="transmission" [disabled]="checkTransmission(transmission)">
+                    {{transmission}}
+                </mat-radio-button>
+            </mat-radio-group>
+
+            <mat-radio-group  fxLayout="column" class="kit-content"
+                formControlName="wheelDrive">
+                <span class="kit-content-title">Привод</span>
+                <mat-radio-button *ngFor="let wheelDrive of wheelDriveArray"
+                    style="margin: 5px 0 0 15px;" [value]="wheelDrive" [disabled]="!checkWheelDrive(wheelDrive)">
+                    {{wheelDrive}}
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+
+        <mat-radio-group  fxLayout="column" class="kit-content"
+            formControlName="modification">
+            <span class="kit-content-title">Модификация</span>
+            <mat-radio-button *ngFor="let modification of modificationArray"
+                style="margin: 5px 0 0 15px;" [value]="modification" [disabled]="!checkModification(modification)">
+                {{modification}}
+            </mat-radio-button>
+        </mat-radio-group>
+
+        <button  class="h-button" style="margin: 0 10px 10px 0;align-self: flex-end" (click)="applyChanges()" mat-button>Click me!</button>
+
+    </div>
+    <div class="kit" [style.background-color]="model.controls.hp.value === 180 ? 'red' : 'black'" fxFlex fxLayoutAlign="end end">
+        <img *ngIf="model.controls.engine.value === 'f18b'" style="width: 190px; height: 160px;" src="https://cdn1.worldpng.ru/uploads/2021/3/30/c52366bcce67277c95fb02cc5f944530-full.png">
+
+        <!-- <div style="height: 700px;width: 500px; background: green"></div> -->
+    </div>
+    <!-- <div style="height: 600px; width: 700px">
+        <img id="vtec1" (mousedown) = "ppp($event)" (ondragstart)="aaa()" (onmouseup)="bbb()"  style="height: 400px; width: 400px" src="https://ae01.alicdn.com/kf/HTB1VxYSNXXXXXb4apXXq6xXFXXXL/Red-Chrom-auto-car-Metal-font-b-VTEC-b-font-sticker-Car-Fender-Stickers-and-font.jpg">
+    
+    </div> -->
+</div>

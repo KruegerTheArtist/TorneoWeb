@@ -6,7 +6,7 @@ import { ApplicationStateService } from '../shared/application-state.service';
   templateUrl: './body.component.html',
   styleUrls: ['./body.component.scss']
 })
-export class BodyComponent implements OnInit, OnDestroy {
+export class BodyComponent implements OnInit {
   vtec: HTMLElement;
   kitArray = ['Люк', 'МКПП', 'АКПП', '1.8', '2.0', '4WD', 'Sir', 'Sir-T', 'Euro-R']
   constructor(public appState: ApplicationStateService) {
@@ -15,58 +15,28 @@ export class BodyComponent implements OnInit, OnDestroy {
 
   }
 
-  ngOnDestroy() {
-    console.log('1111');
-    
-  }
+  // ngOnDestroy() {
+  //  // console.log('1111');
 
-  ppp(e: MouseEvent) {
-    this.vtec.style.position = 'absolute';
-    document.body.appendChild(this.vtec);
-    this.moveAt(e);
+  // }
 
-    this.vtec.style.zIndex = '1000'; // над другими элементами
+  // bbb() {
+  //   document.onmousemove = null;
+  //   this.vtec.onmouseup = null;
+  // }
 
-  }
+  // aaa(kit: any) {
+  //   console.log(kit);
+  //   this.appState.setUserKit(kit);
+  // }
 
-  moveAt(e) {
-    var coords = this.getCoords(this.vtec);
-
-    var shiftX = e.pageX - coords.left;
-    var shiftY = e.pageY - coords.top;
-    this.vtec.style.left = e.pageX - shiftX + 'px';
-    this.vtec.style.top = e.pageY - shiftY + 'px';
-  }
-  ccc(e: MouseEvent) {
-    this.moveAt(e);
-
-  }
-
-  bbb() {
-    document.onmousemove = null;
-    this.vtec.onmouseup = null;
-  }
-
-  getCoords(vtec: HTMLElement) {
-    var box = vtec.getBoundingClientRect();
-    return {
-      top: box.top + pageYOffset,
-      left: box.left + pageXOffset
-    };
-  }
-
-  aaa(kit: any) {
-    console.log(kit);
-    this.appState.setUserKit(kit);
-  }
-
-  includeKit(kit: string) {
-    return this.appState.getUserKit().includes(kit)
-  }
+  // includeKit(kit: string) {
+  //   return this.appState.getUserKit().includes(kit);
+  // }
 
   ngOnInit() {
-    this.vtec = document.getElementById('vtec1');
-
+    console.log(this.appState.getUserKit());
+    
   }
 
 }
