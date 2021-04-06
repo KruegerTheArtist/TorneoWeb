@@ -17,6 +17,7 @@ import { Subscription } from 'rxjs';
 export class KitComponent implements OnInit, OnDestroy {
 
   ModificationEnum = ModificationEnum;
+  EngineEnum = EngineEnum;
 
 
   transmission = this.fb.control(null);

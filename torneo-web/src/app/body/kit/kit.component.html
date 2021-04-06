@@ -1,5 +1,5 @@
 <div fxFlexFill fxLayout="row">
-    <div class="kit" fxFlex="15%">
+    <div class="kit" fxFlex="200px">
         <form [formGroup]="model" class="configuration-form">
             <div>
                 <img src="https://secure.webtoolhub.com/static/resources/icons/set73/b89b1aa9.png">
@@ -33,7 +33,7 @@
 
         <!-- <div style="height: 700px;width: 500px; background: green"></div> -->
     </div>
-    <div [formGroup]="model" class="kit" fxFlex="60%" fxLayout="column" fxLayoutAlign="start start">
+    <div [formGroup]="model" class="kit" fxFlex="400px" fxLayout="column" fxLayoutAlign="start start">
 
         <div fxLayout="row">
             <mat-radio-group fxLayout="column"  class="kit-content"
@@ -88,7 +88,9 @@
         <button  class="h-button" style="margin: 0 10px 10px 0;align-self: flex-end" (click)="applyChanges()" mat-button>Click me!</button>
 
     </div>
-    <div class="kit"  fxFlex="25%" fxLayoutAlign="end end">
+    <div class="kit" [style.background-color]="model.controls.hp.value === 180 ? 'red' : 'black'" fxFlex fxLayoutAlign="end end">
+        <img *ngIf="model.controls.engine.value === 'f18b'" style="width: 190px; height: 160px;" src="https://cdn1.worldpng.ru/uploads/2021/3/30/c52366bcce67277c95fb02cc5f944530-full.png">
+
         <!-- <div style="height: 700px;width: 500px; background: green"></div> -->
     </div>
     <!-- <div style="height: 600px; width: 700px">
