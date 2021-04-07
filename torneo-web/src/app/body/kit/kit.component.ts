@@ -21,9 +21,12 @@ export class KitComponent implements OnInit, OnDestroy {
 
 
   transmission = this.fb.control(null);
+  transmissionPreview = this.fb.control('Не выбран тип трансмиссии');
   wheelDrive = this.fb.control(null);
+  wheelDrivePreview = this.fb.control('Не выбран тип привода');
   modification = this.fb.control(null);
   hp = this.fb.control(null);
+  hpPreview = this.fb.control(0);
   engine = this.fb.control(null);
   customKit = this.fb.control(false);
 
@@ -35,6 +38,12 @@ export class KitComponent implements OnInit, OnDestroy {
     modification: this.modification,
     wheelDrive: this.wheelDrive,
     customKit: this.customKit
+  });
+
+  modelPreview = this.fb.group({
+    hpPreview: this.hpPreview,
+    transmissionPreview: this.transmissionPreview,
+    wheelDrivePreview: this.wheelDrivePreview
   });
 
 
@@ -65,10 +74,10 @@ export class KitComponent implements OnInit, OnDestroy {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     console.log(this.appState.getUserKit());
-    if (this.transmission.value === null) { this.transmission.setValue('Не выбран тип трансмиссии'); }
-    if (this.wheelDrive.value === null) { this.wheelDrive.setValue('Не выбран тип привода'); }
-    if (this.modification.value === null) { this.modification.setValue(['Не выбрана модификация']); }
-    if (this.hp.value === null) { this.hp.setValue(0); }
+    // if (!this.transmission.value) { this.transmission.setValue('Не выбран тип трансмиссии'); }
+    // if (!this.wheelDrive.value) { this.wheelDrive.setValue('Не выбран тип привода'); }
+    // if (!this.modification.value) { this.modification.setValue(['Не выбрана модификация']); }
+    // if (!this.hp.value) { this.hp.setValue(0); }
     console.log(this.model);
     //  this.sub = this.model.valueChanges.subscribe(() => { this.initForm(); });
 
@@ -113,14 +122,32 @@ export class KitComponent implements OnInit, OnDestroy {
     // }
   }
 
+  setHp(hp: number) {
+    this.hpPreview.setValue(hp);
+  }
+
+  setWheelDrive(wheelDrive: string) {
+    this.wheelDrivePreview.setValue(wheelDrive);
+  }
+
+  setTransmission(transmission: string) {
+    this.transmissionPreview.setValue(transmission);
+  }
+
+
+  aaa() {
+    console.log(this.transmission.value);
+
+  }
+
   initForm() {
     const userKit = this.appState.getUserKit();
-    this.transmission.setValue(userKit.transmission);
-    this.modification.setValue(userKit.modification);
-    this.hp.setValue(userKit.hp);
-    this.engine.setValue(userKit.engine);
-    this.wheelDrive.setValue(userKit.wheelDrive);
-    this.customKit.setValue(userKit.customKit);
+    this.transmissionPreview.setValue(userKit.transmission);
+    // this.modification.setValue(userKit.modification);
+    this.hpPreview.setValue(userKit.hp);
+    // this.engine.setValue(userKit.engine);
+    this.wheelDrivePreview.setValue(userKit.wheelDrive);
+    // this.customKit.setValue(userKit.customKit);
     this.modificationPng = ModificationEnumExt.getModificationEnum(userKit.modification);
     console.log(this.appState.getUserKit());
   }
