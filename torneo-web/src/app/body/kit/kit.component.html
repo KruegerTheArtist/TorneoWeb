@@ -1,28 +1,45 @@
 <div fxFlexFill fxLayout="row">
     <div class="kit" fxFlex="200px">
-        <form [formGroup]="model" class="configuration-form">
+        <form [formGroup]="modelPreview" class="configuration-form">
             <div>
-                <img src="https://secure.webtoolhub.com/static/resources/icons/set73/b89b1aa9.png">
+                <span [ngSwitch]="hpPreview.value">
+                    <img *ngSwitchCase="140 || 148 || 150" src="../../assets/images/blackTop.png">
+                    <img *ngSwitchCase="180 || 200" src="../../assets/images/blueTop.png">
+                    <img *ngSwitchCase="220" src="../../assets/images/redTop.png">
+                    <img *ngSwitchDefault src="../../assets/images/engine.png">
+                </span>
+
                 <mat-form-field fxFlex="row">
                     <mat-label>HP/kW</mat-label>
-                    <input matInput formControlName="hp" placeholder="HP/kW">
+                    <input matInput formControlName="hpPreview" placeholder="HP/kW">
                 </mat-form-field>
             </div>
             <div>
-                <img src="https://www.autosynergy.co.uk/assets/icons/ic-transmission-444.png">
+                <span [ngSwitch]="transmissionPreview.value">
+                    <img *ngSwitchCase="'МКПП'" src="../../assets/images/MT.png">
+                    <img *ngSwitchCase="'АКПП'" src="../../assets/images/AT.png">
+                    <img *ngSwitchDefault src="../../assets/images/MT.png">
+                </span>
+
                 <mat-form-field fxFlex="row">
                     <mat-label>Transmission</mat-label>
-                    <input matInput formControlName="transmission" placeholder="Transmission">
+                    <input matInput formControlName="transmissionPreview" placeholder="Transmission">
                 </mat-form-field>
             </div>
             <div>
-                <img src="http://www.scudierofficina.com/wp-content/uploads/2016/11/chassis-150x150.png">
+                <span [ngSwitch]="transmissionPreview.value">
+                    <img *ngSwitchCase="'4WD'" src="../../assets/images/fullWD.png">
+                    <img *ngSwitchCase="'Передний привод'" src="../../assets/images/frontWD.png">
+                    <img *ngSwitchCase="'Задний привод'" src="../../assets/images/rearWD.png">
+                    <img *ngSwitchDefault src="../../assets/images/WD.png">
+                </span>
+
                 <mat-form-field fxFlex="row">
                     <mat-label>Wheel drive</mat-label>
-                    <input matInput formControlName="wheelDrive" placeholder="Wheel drive">
+                    <input matInput formControlName="wheelDrivePreview" placeholder="Wheel drive">
                 </mat-form-field>
             </div>
-            <div>
+            <!-- <div>
                 <img *ngIf="modificationPng === ModificationEnum.VTE || modificationPng === ModificationEnum.VTS"
                     src="https://pubimg.4mycar.ru/images/06c36eb19d0ad0a27d4a8a0dcf3139b498.jpeg" style="width: 80px;">
                 <img *ngIf="modificationPng === ModificationEnum.sir" src="https://media.vinylfarm.com/2015/06/SiR.png"
@@ -31,10 +48,9 @@
                     style="width: 80px;">
                 <img *ngIf="modificationPng === ModificationEnum.euroR" src="https://a.d-cd.net/dc2c07es-480.jpg"
                     style="width: 80px;">
-            </div>
+            </div> -->
         </form>
 
-        <!-- <div style="height: 700px;width: 500px; background: green"></div> -->
     </div>
     <div [formGroup]="model" class="kit" fxFlex="400px" fxLayout="column" fxLayoutAlign="start start">
 
@@ -49,7 +65,7 @@
             <mat-radio-group fxLayout="column" class="kit-content" formControlName="hp" style="margin-left: 50px;">
                 <span class="kit-content-title">Мощность</span>
                 <mat-radio-button *ngFor="let hp of hpArray" style="margin: 5px 0 0 15px;" [value]="hp"
-                    [disabled]="checkHp(hp)">
+                    (click)="setHp(hp)" [disabled]="checkHp(hp)">
                     {{hp}}
                 </mat-radio-button>
             </mat-radio-group>
@@ -59,7 +75,8 @@
             <mat-radio-group fxLayout="column" class="kit-content" formControlName="transmission">
                 <span class="kit-content-title">Коробка передач</span>
                 <mat-radio-button *ngFor="let transmission of transmissionArray" style="margin: 5px 0 0 15px;"
-                    [value]="transmission" [disabled]="checkTransmission(transmission)">
+                    (click)="setTransmission(transmission)" [value]="transmission"
+                    [disabled]="checkTransmission(transmission)">
                     {{transmission}}
                 </mat-radio-button>
             </mat-radio-group>
@@ -67,7 +84,7 @@
             <mat-radio-group fxLayout="column" class="kit-content" formControlName="wheelDrive">
                 <span class="kit-content-title">Привод</span>
                 <mat-radio-button *ngFor="let wheelDrive of wheelDriveArray" style="margin: 5px 0 0 15px;"
-                    [value]="wheelDrive" [disabled]="checkWheelDrive(wheelDrive)">
+                    (click)="setWheelDrive(wheelDrive)" [value]="wheelDrive" [disabled]="checkWheelDrive(wheelDrive)">
                     {{wheelDrive}}
                 </mat-radio-button>
             </mat-radio-group>
@@ -92,12 +109,9 @@
             mat-button>Click me!</button>
 
     </div>
-    <div class="kit" fxFlex
-        fxLayoutAlign="end end">
-        <img *ngIf="model.controls.engine.value === 'f18b'" style="width: 190px; height: 160px;"
-            src="https://cdn1.worldpng.ru/uploads/2021/3/30/c52366bcce67277c95fb02cc5f944530-full.png">
-
-        <!-- <div style="height: 700px;width: 500px; background: green"></div> -->
+    <div class="kit" fxFlex fxLayoutAlign="end end">
+        <!-- <img *ngIf="model.controls.engine.value === 'f18b'" style="width: 190px; height: 160px;"
+            src="https://cdn1.worldpng.ru/uploads/2021/3/30/c52366bcce67277c95fb02cc5f944530-full.png"> -->
     </div>
     <!-- <div style="height: 600px; width: 700px">
         <img id="vtec1" (mousedown) = "ppp($event)" (ondragstart)="aaa()" (onmouseup)="bbb()"  style="height: 400px; width: 400px" src="https://ae01.alicdn.com/kf/HTB1VxYSNXXXXXb4apXXq6xXFXXXL/Red-Chrom-auto-car-Metal-font-b-VTEC-b-font-sticker-Car-Fender-Stickers-and-font.jpg">
