@@ -23,11 +23,14 @@
                 </mat-form-field>
             </div>
             <div>
-                <img *ngIf="modificationPng === ModificationEnum.VTE || modificationPng === ModificationEnum.VTS" src="https://pubimg.4mycar.ru/images/06c36eb19d0ad0a27d4a8a0dcf3139b498.jpeg" style="width: 80px;">
-                <img *ngIf="modificationPng === ModificationEnum.sir" src="https://media.vinylfarm.com/2015/06/SiR.png" style="width: 80px;">
-                <img *ngIf="modificationPng === ModificationEnum.sirT" src="https://a.d-cd.net/53d06b5s-1920.jpg" style="width: 80px;">
-                <img *ngIf="modificationPng === ModificationEnum.euroR" src="https://a.d-cd.net/dc2c07es-480.jpg" style="width: 80px;">
-                <img *ngIf="modificationPng === ModificationEnum.LEV" src="https://pubimg.4mycar.ru/images/06c36eb19d0ad0a27d4a8a0dcf3139b498.jpeg" style="width: 80px;">
+                <img *ngIf="modificationPng === ModificationEnum.VTE || modificationPng === ModificationEnum.VTS"
+                    src="https://pubimg.4mycar.ru/images/06c36eb19d0ad0a27d4a8a0dcf3139b498.jpeg" style="width: 80px;">
+                <img *ngIf="modificationPng === ModificationEnum.sir" src="https://media.vinylfarm.com/2015/06/SiR.png"
+                    style="width: 80px;">
+                <img *ngIf="modificationPng === ModificationEnum.sirT" src="https://a.d-cd.net/53d06b5s-1920.jpg"
+                    style="width: 80px;">
+                <img *ngIf="modificationPng === ModificationEnum.euroR" src="https://a.d-cd.net/dc2c07es-480.jpg"
+                    style="width: 80px;">
             </div>
         </form>
 
@@ -36,60 +39,63 @@
     <div [formGroup]="model" class="kit" fxFlex="400px" fxLayout="column" fxLayoutAlign="start start">
 
         <div fxLayout="row">
-            <mat-radio-group fxLayout="column"  class="kit-content"
-                formControlName="engine">
+            <mat-radio-group fxLayout="column" class="kit-content" formControlName="engine">
                 <span class="kit-content-title">Двигатель</span>
-                <mat-radio-button *ngFor="let engine of engineArray"
-                    style="margin: 5px 0 0 15px;" [value]="engine">
+                <mat-radio-button *ngFor="let engine of engineArray" style="margin: 5px 0 0 15px;" [value]="engine">
                     {{engine}}
                 </mat-radio-button>
             </mat-radio-group>
 
-            <mat-radio-group fxLayout="column"  class="kit-content"
-                formControlName="hp" style="margin-left: 50px;">
+            <mat-radio-group fxLayout="column" class="kit-content" formControlName="hp" style="margin-left: 50px;">
                 <span class="kit-content-title">Мощность</span>
-                <mat-radio-button *ngFor="let hp of hpArray" style="margin: 5px 0 0 15px;"
-                    [value]="hp">
+                <mat-radio-button *ngFor="let hp of hpArray" style="margin: 5px 0 0 15px;" [value]="hp"
+                    [disabled]="checkHp(hp)">
                     {{hp}}
                 </mat-radio-button>
             </mat-radio-group>
         </div>
 
         <div fxLayout="row">
-            <mat-radio-group fxLayout="column" class="kit-content"
-                formControlName="transmission">
+            <mat-radio-group fxLayout="column" class="kit-content" formControlName="transmission">
                 <span class="kit-content-title">Коробка передач</span>
-                <mat-radio-button *ngFor="let transmission of transmissionArray"
-                    style="margin: 5px 0 0 15px;" [value]="transmission" [disabled]="checkTransmission(transmission)">
+                <mat-radio-button *ngFor="let transmission of transmissionArray" style="margin: 5px 0 0 15px;"
+                    [value]="transmission" [disabled]="checkTransmission(transmission)">
                     {{transmission}}
                 </mat-radio-button>
             </mat-radio-group>
 
-            <mat-radio-group  fxLayout="column" class="kit-content"
-                formControlName="wheelDrive">
+            <mat-radio-group fxLayout="column" class="kit-content" formControlName="wheelDrive">
                 <span class="kit-content-title">Привод</span>
-                <mat-radio-button *ngFor="let wheelDrive of wheelDriveArray"
-                    style="margin: 5px 0 0 15px;" [value]="wheelDrive" [disabled]="!checkWheelDrive(wheelDrive)">
+                <mat-radio-button *ngFor="let wheelDrive of wheelDriveArray" style="margin: 5px 0 0 15px;"
+                    [value]="wheelDrive" [disabled]="checkWheelDrive(wheelDrive)">
                     {{wheelDrive}}
                 </mat-radio-button>
             </mat-radio-group>
         </div>
 
+        <div fxLayout="row">
 
-        <mat-radio-group  fxLayout="column" class="kit-content"
-            formControlName="modification">
-            <span class="kit-content-title">Модификация</span>
-            <mat-radio-button *ngFor="let modification of modificationArray"
-                style="margin: 5px 0 0 15px;" [value]="modification" [disabled]="!checkModification(modification)">
-                {{modification}}
-            </mat-radio-button>
-        </mat-radio-group>
+            <mat-radio-group fxLayout="column" class="kit-content" formControlName="modification">
+                <span class="kit-content-title">Модификация</span>
+                <mat-radio-button *ngFor="let modification of modificationArray" style="margin: 5px 0 0 15px;"
+                    [value]="modification" [disabled]="checkModification(modification)">
+                    {{modification}}
+                </mat-radio-button>
+            </mat-radio-group>
 
-        <button  class="h-button" style="margin: 0 10px 10px 0;align-self: flex-end" (click)="applyChanges()" mat-button>Click me!</button>
+            <mat-checkbox fxLayout="column" formControlName="customKit" color="primary" style="margin-left: 35px;">
+                Кастом
+            </mat-checkbox>
+        </div>
+
+        <button class="h-button" style="margin: 0 10px 10px 0;align-self: flex-end" (click)="applyChanges()"
+            mat-button>Click me!</button>
 
     </div>
-    <div class="kit" [style.background-color]="model.controls.hp.value === 180 ? 'red' : 'black'" fxFlex fxLayoutAlign="end end">
-        <img *ngIf="model.controls.engine.value === 'f18b'" style="width: 190px; height: 160px;" src="https://cdn1.worldpng.ru/uploads/2021/3/30/c52366bcce67277c95fb02cc5f944530-full.png">
+    <div class="kit" fxFlex
+        fxLayoutAlign="end end">
+        <img *ngIf="model.controls.engine.value === 'f18b'" style="width: 190px; height: 160px;"
+            src="https://cdn1.worldpng.ru/uploads/2021/3/30/c52366bcce67277c95fb02cc5f944530-full.png">
 
         <!-- <div style="height: 700px;width: 500px; background: green"></div> -->
     </div>

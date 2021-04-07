@@ -3,8 +3,7 @@ export enum ModificationEnum {
     VTS = 1,
     sir = 2,
     sirT = 3,
-    euroR = 4,
-    LEV = 5
+    euroR = 4
 }
 
 export class ModificationEnumExt {
@@ -20,8 +19,6 @@ export class ModificationEnumExt {
                 return 'Sir-T';
             case ModificationEnum.euroR:
                 return 'Euro-R';
-            case ModificationEnum.LEV:
-                return 'LEV';
             default:
                 return 'Неизвестно';
         }
@@ -39,12 +36,10 @@ export class ModificationEnumExt {
                 return ModificationEnum.sirT;
             case 'Euro-R':
                 return ModificationEnum.euroR;
-            case 'LEV':
-                return ModificationEnum.LEV;
         }
     }
 
     public static getAllModificationNames(): string[] {
-        return ['VTE', 'VTS', 'Sir', 'Sir-T', 'Euro-R', 'LEV']
+        return ['VTE', 'VTS', 'Sir', 'Sir-T', 'Euro-R']
     }
 }
