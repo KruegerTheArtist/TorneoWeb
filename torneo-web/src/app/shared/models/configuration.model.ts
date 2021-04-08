@@ -5,4 +5,5 @@ export class ConfigurationModel {
     wheelDrive: string;
     modification: string;
     customKit: boolean;
+    options: string[] = [];
 }

@@ -13,6 +13,10 @@ export class ApplicationStateService {
         this.userKit = userKit;
     }
 
+    setOptionsKit(options: string[]) {
+        this.userKit.options = options;
+    }
+
     getUserKit() {
         return this.userKit;
     }
