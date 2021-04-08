@@ -52,57 +52,77 @@
         </form>
 
     </div>
-    <div [formGroup]="model" class="kit" fxFlex="400px" fxLayout="column" fxLayoutAlign="start start">
+    <div [formGroup]="model" class="kit" fxFlex="510px" fxLayout="column" fxLayoutAlign="start start">
 
         <div fxLayout="row">
-            <mat-radio-group fxLayout="column" class="kit-content" formControlName="engine">
-                <span class="kit-content-title">Двигатель</span>
-                <mat-radio-button *ngFor="let engine of engineArray" style="margin: 5px 0 0 15px;" [value]="engine">
-                    {{engine}}
-                </mat-radio-button>
-            </mat-radio-group>
+            <div fxLayout="column">
+                <div fxLayout="row">
+                    <mat-radio-group fxLayout="column" class="kit-content" formControlName="engine">
+                        <span class="kit-content-title">Двигатель</span>
+                        <mat-radio-button *ngFor="let engine of engineArray" color="primary"
+                            style="margin: 5px 0 0 15px;" [value]="engine">
+                            {{engine}}
+                        </mat-radio-button>
+                    </mat-radio-group>
 
-            <mat-radio-group fxLayout="column" class="kit-content" formControlName="hp" style="margin-left: 50px;">
-                <span class="kit-content-title">Мощность</span>
-                <mat-radio-button *ngFor="let hp of hpArray" style="margin: 5px 0 0 15px;" [value]="hp"
-                    (click)="setHp(hp)" [disabled]="checkHp(hp)">
-                    {{hp}}
-                </mat-radio-button>
-            </mat-radio-group>
-        </div>
+                    <mat-radio-group fxLayout="column" class="kit-content" formControlName="hp"
+                        style="margin-left: 50px;">
+                        <span class="kit-content-title">Мощность</span>
+                        <mat-radio-button *ngFor="let hp of hpArray" color="primary" style="margin: 5px 0 0 15px;"
+                            [value]="hp" (click)="setHp(hp)" [disabled]="checkHp(hp)">
+                            {{hp}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </div>
 
-        <div fxLayout="row">
-            <mat-radio-group fxLayout="column" class="kit-content" formControlName="transmission">
-                <span class="kit-content-title">Коробка передач</span>
-                <mat-radio-button *ngFor="let transmission of transmissionArray" style="margin: 5px 0 0 15px;"
-                    (click)="setTransmission(transmission)" [value]="transmission"
-                    [disabled]="checkTransmission(transmission)">
-                    {{transmission}}
-                </mat-radio-button>
-            </mat-radio-group>
+                <div fxLayout="row">
+                    <mat-radio-group fxLayout="column" class="kit-content" formControlName="transmission">
+                        <span class="kit-content-title">Коробка передач</span>
+                        <mat-radio-button *ngFor="let transmission of transmissionArray" color="primary"
+                            style="margin: 5px 0 0 15px;" (click)="setTransmission(transmission)" [value]="transmission"
+                            [disabled]="checkTransmission(transmission)">
+                            {{transmission}}
+                        </mat-radio-button>
+                    </mat-radio-group>
 
-            <mat-radio-group fxLayout="column" class="kit-content" formControlName="wheelDrive">
-                <span class="kit-content-title">Привод</span>
-                <mat-radio-button *ngFor="let wheelDrive of wheelDriveArray" style="margin: 5px 0 0 15px;"
-                    (click)="setWheelDrive(wheelDrive)" [value]="wheelDrive" [disabled]="checkWheelDrive(wheelDrive)">
-                    {{wheelDrive}}
-                </mat-radio-button>
-            </mat-radio-group>
-        </div>
+                    <mat-radio-group fxLayout="column" class="kit-content" formControlName="wheelDrive">
+                        <span class="kit-content-title">Привод</span>
+                        <mat-radio-button *ngFor="let wheelDrive of wheelDriveArray" color="primary"
+                            style="margin: 5px 0 0 15px;" (click)="setWheelDrive(wheelDrive)" [value]="wheelDrive"
+                            [disabled]="checkWheelDrive(wheelDrive)">
+                            {{wheelDrive}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </div>
 
-        <div fxLayout="row">
+                <div fxLayout="row">
 
-            <mat-radio-group fxLayout="column" class="kit-content" formControlName="modification">
-                <span class="kit-content-title">Модификация</span>
-                <mat-radio-button *ngFor="let modification of modificationArray" style="margin: 5px 0 0 15px;"
-                    [value]="modification" [disabled]="checkModification(modification)">
-                    {{modification}}
-                </mat-radio-button>
-            </mat-radio-group>
+                    <mat-radio-group fxLayout="column" class="kit-content" formControlName="modification">
+                        <span class="kit-content-title">Модификация</span>
+                        <mat-radio-button *ngFor="let modification of modificationArray" color="primary"
+                            style="margin: 5px 0 0 15px;" [value]="modification"
+                            [disabled]="checkModification(modification)">
+                            {{modification}}
+                        </mat-radio-button>
+                    </mat-radio-group>
 
-            <mat-checkbox fxLayout="column" formControlName="customKit" color="primary" style="margin-left: 35px;">
-                Кастом
-            </mat-checkbox>
+                    <mat-checkbox fxLayout="column" formControlName="customKit" color="primary"
+                        style="margin-left: 35px;">
+                        Кастом
+                    </mat-checkbox>
+                </div>
+            </div>
+            <div class="kit-content">
+                <span class="kit-content-title">Опции</span>
+                <div fxLayout="column"
+                    style="box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+                border-radius: 8px; padding: 5px 10px 5px 0; width: 185px;margin-top: 5px; max-height: 430px; overflow: auto;">
+                    <mat-checkbox *ngFor="let option of optionArray" (change)="selectOption(option)"
+                        [checked]="isSelected(option)" color="primary" style="margin-left: 10px;">
+                        {{option}}
+                    </mat-checkbox>
+                </div>
+            </div>
         </div>
 
         <button class="h-button" style="margin: 0 10px 10px 0;align-self: flex-end" (click)="applyChanges()"

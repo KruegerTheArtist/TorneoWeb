@@ -47,10 +47,10 @@ export class KitComponent implements OnInit, OnDestroy {
   });
 
 
-  vtec: HTMLElement;
   configuration: ConfigurationModel = new ConfigurationModel();
   // transmission = 'Не выбран тип трансмиссии';
-  kitArray = ['Люк', 'МКПП', 'АКПП', '1.8', '2.0', '4WD', 'Sir', 'Sir-T', 'Euro-R']
+  selectedOptions = [];
+  optionArray = ['Люк', 'Задняя щетка', 'Галоген', 'Ксенон', 'Euro package', 'leather package', 'S package', 'LEV', 'F-type', 'Recaro сиденья', 'Подогрев сидений', 'Mugen обвес', 'Spoon обвес', 'Azect обвес', 'Enkei 16"', 'Modulo обвес', 'Modulo выхлоп', 'Mugen выхлоп', 'Фаркоп', 'Рейлинги']
   engineArray = EngineEnumExt.getAllEngineNames();
   hpArray = EngineEnumExt.getAllHpEngines();
   transmissionArray = TransmissionEnumExt.getAllTransmissionNames();
@@ -134,21 +134,27 @@ export class KitComponent implements OnInit, OnDestroy {
     this.transmissionPreview.setValue(transmission);
   }
 
+  selectOption(option: string) {
+    this.selectedOptions.push(option);
+  }
 
-  aaa() {
-    console.log(this.transmission.value);
-
+  isSelected(option: string) {
+    return this.selectedOptions.includes(option);
   }
 
   initForm() {
     const userKit = this.appState.getUserKit();
+    this.engine.setValue(userKit.engine);
     this.transmissionPreview.setValue(userKit.transmission);
-    // this.modification.setValue(userKit.modification);
+    this.transmission.setValue(userKit.transmission);
+    this.modification.setValue(userKit.modification);
     this.hpPreview.setValue(userKit.hp);
-    // this.engine.setValue(userKit.engine);
+    this.hp.setValue(userKit.hp);
     this.wheelDrivePreview.setValue(userKit.wheelDrive);
-    // this.customKit.setValue(userKit.customKit);
+    this.wheelDrive.setValue(userKit.wheelDrive);
+    this.customKit.setValue(userKit.customKit);
     this.modificationPng = ModificationEnumExt.getModificationEnum(userKit.modification);
+    this.selectedOptions = userKit.options;
     console.log(this.appState.getUserKit());
   }
 
@@ -334,6 +340,7 @@ export class KitComponent implements OnInit, OnDestroy {
     // console.log('aaaaaaa', a);
 
     this.appState.setUserKit(this.model.value);
+    this.appState.setOptionsKit(this.selectedOptions);
   }
 
   private clearChoice(controlName: string, controlValue: any) {
